@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>두개 선택</h2>
+    <form name="dynamic-upload2">
+      <input type="file" name="files" multiple /><br />
+      <input type="text" name="title" /><br />
+      <button type="button" onclick="twoclick()">업로드</button>
+    </form>
+    <div id="dynamic-upload-result1"></div>
+    <div id="dynamic-upload-result2"></div>
+  </body>
+  <script>
+    function twoclick() {
+      const form = document.forms["dynamic-upload2"];
+      const formData = new FormData();
+
+      formData.append("title", form.title.value);
+      formData.append("files", form.files.files[0]);
+      formData.append("files", form.files.files[1]);
+
+      axios({
+        method: "post",
+        url: "/upload/array",
+        data: formData, //폼데이터를 여기로 옮긴다.
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      }).then((res) => {
+        console.log(res);
+        const result1 = document.getElementById("dynamic-upload-result1");
+        const result2 = document.getElementById("dynamic-upload-result2");
+        result1.innerHTML = `<img src="/${res.data.src[0]}" width="150"/>`;
+        result2.innerHTML = `<img src="/${res.data.src[1]}" width="150"/>`;
+      });
+    }
+  </script>
+</html>

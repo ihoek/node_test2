@@ -3,14 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <form action="/upload" method="post" enctype="multipart/form-data">
+    <h2>한개 선택</h2>
+    <form name="dynamic-upload">
       <input type="file" name="files" /><br />
       <input type="text" name="title" /><br />
-      <button type="submit">업로드</button>
+      <button type="button" onclick="oneclick()">업로드</button>
     </form>
+    <div id="dynamic-upload-result"></div>
   </body>
-  <script></script>
+  <script>
+    function oneclick() {
+      const form = document.forms["dynamic-upload"];
+      const formData = new FormData();
+
+      formData.append("title", form.title.value);
+      formData.append("files", form.files.files[0]);
+
+      axios({
+        method: "post",
+        url: "/upload",
+        data: formData, //폼데이터를 여기로 옮긴다.
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      }).then((res) => {
+        console.log(res.data);
+        const result = document.getElementById("dynamic-upload-result");
+        result.innerHTML = `<img src="/${res.data.src}" width="150"/>`;
+      });
+    }
+  </script>
 </html>
