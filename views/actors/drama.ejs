@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>드라마 리스트</h1>
+    <table border='1'>
+      <tr>
+        <th>이름</th>
+        <th>제목</th>
+        <th>역할</th>
+      </tr>
+      <% drama.forEach(actor => { %>
+      <tr>
+        <td><%= actor.userName %></td>
+
+        <% let drama_len = actor.careers.length %>
+
+        <td> <% for(let i=0;i<drama_len;i++){ %>
+          <% if(actor.careers[i].categor === "drama"){ %>
+            <%= actor.careers[i].title %> <br>
+            <% } %>
+            <% } %>
+        </td>
+       <td> <% for(let i=0;i<drama_len;i++){ %>
+          <% if(actor.careers[i].categor === "drama"){ %>
+            <%= actor.careers[i].role %> <br>
+            <% } %>
+            <% } %>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+    <a href="/actors">홈으로</a>
+  </body>
+</html>

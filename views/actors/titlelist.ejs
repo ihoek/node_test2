@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>같은 드라마 || 같은 영화 || 같은 뮤지컬 나온 배우들</h1>
+
+    <h3>같은 드라마</h3>
+    <table border="1">
+      <tr>
+        <th>제목</th>
+        <th>이름</th>
+        <th>역할</th>
+      </tr>
+
+      <% title_lst.drama.forEach(title => { %> <% let firstRow = true; %> <%
+      filteredCareers.forEach(actor => { %> <% actor.careers.forEach(career => {
+      %> <% if (career.title === title && career.categor === "drama") { %>
+      <tr>
+        <% if (firstRow) { %>
+        <td
+          rowspan="<%= filteredCareers.filter(actor => actor.careers.some(career => career.title === title && career.categor === 'drama')).length %>"
+        >
+          <%= title %>
+        </td>
+        <% firstRow = false; %> <% } %>
+        <td><%= actor.userName %></td>
+        <td><%= career.role %></td>
+      </tr>
+      <% } %> <% }) %> <% }) %> <% }) %>
+    </table>
+
+    <h3>같은 영화</h3>
+    <table border="1">
+      <tr>
+        <th>제목</th>
+        <th>이름</th>
+        <th>역할</th>
+      </tr>
+
+      <% title_lst.movie.forEach(title => { %> <% let firstRow = true; %> <%
+      filteredCareers.forEach(actor => { %> <% actor.careers.forEach(career => {
+      %> <% if (career.title === title && career.categor === "movie") { %>
+      <tr>
+        <% if (firstRow) { %>
+        <td
+          rowspan="<%= filteredCareers.filter(actor => actor.careers.some(career => career.title === title && career.categor === 'movie')).length %>"
+        >
+          <%= title %>
+        </td>
+        <% firstRow = false; %> <% } %>
+        <td><%= actor.userName %></td>
+        <td><%= career.role %></td>
+      </tr>
+      <% } %> <% }) %> <% }) %> <% }) %>
+    </table>
+
+    <h3>같은 뮤지컬</h3>
+    <table border="1">
+      <tr>
+        <th>제목</th>
+        <th>이름</th>
+        <th>역할</th>
+      </tr>
+
+      <% title_lst.musical.forEach(title => { %> <% let firstRow = true; %> <%
+      filteredCareers.forEach(actor => { %> <% actor.careers.forEach(career => {
+      %> <% if (career.title === title && career.categor === "musical") { %>
+      <tr>
+        <% if (firstRow) { %>
+        <td
+          rowspan="<%= filteredCareers.filter(actor => actor.careers.some(career => career.title === title && career.categor === 'musical')).length %>"
+        >
+          <%= title %>
+        </td>
+        <% firstRow = false; %> <% } %>
+        <td><%= actor.userName %></td>
+        <td><%= career.role %></td>
+      </tr>
+      <% } %> <% }) %> <% }) %> <% }) %>
+    </table>
+
+    <a href="/actors">홈으로</a>
+  </body>
+</html>

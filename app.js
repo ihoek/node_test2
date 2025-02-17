@@ -5,6 +5,7 @@ const path = require("path");
 //라우팅 파일 불러오기
 const userRouters = require("./routes/userRoutes");
 const itemRouters = require("./routes/itemRoutes");
+const actorRouters = require("./routes/actorRoutes");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -35,8 +36,8 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // /user 경로에 대한 라우팅 처리
 app.use("/users", userRouters); // /users에 대한 요청은 userRoutes로 처리
-// /item 경로에 대한 라우팅 처리
-app.use("/items", itemRouters);
+app.use("/items", itemRouters); // /item 경로에 대한 라우팅 처리
+app.use("/actors", actorRouters); // /item 경로에 대한 라우팅 처리
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 

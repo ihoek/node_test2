@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>여자 배우 리스트</h1>
+    <table border='1'>
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>커리어</th>
+      </tr>
+      <% womanactors.forEach(actor => { %>
+      <% let career_len = actor.careers.length %>
+      <tr>
+        <td><%= actor.userName %></td>
+        <td><%= actor.age %></td>
+        <td><% for(let i=0;i<career_len;i++){ %>
+          <%= actor.careers[i].categor %> - 
+          <%= actor.careers[i].title %>
+          (<%= actor.careers[i].role %>)
+          <% } %></td>
+      </tr>
+      <% }) %>
+    </table>
+    <a href="/actors">홈으로</a>
+  </body>
+</html>
