@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>상품 리스트</h1>
+    <ul>
+      <% items.forEach(item => { %>
+      <li>
+        <a href="/items/detail/<%= item.id %>"> <%= item.name %></a>
+      </li>
+      <% }) %>
+    </ul>
+
+    <h1>가장 비싼 상품</h1>
+    <a href="/items/maxitem">가장 비쌈</a>
+  </body>
+</html>
